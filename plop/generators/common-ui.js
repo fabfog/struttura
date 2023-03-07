@@ -16,8 +16,18 @@ module.exports = {
   actions: [
     {
       type: 'add',
-      path: '../src/common/ui/{{componentType}}/{{pascalCase name}}/index.tsx',
-      templateFile: './templates/common/ui.tsx.hbs'
+      path: '../src/common/ui/{{componentType}}/{{pascalCase name}}/{{pascalCase name}}.tsx',
+      templateFile: './templates/common/ui/component.tsx.hbs'
+    },
+    {
+      type: 'add',
+      path: '../src/common/ui/{{componentType}}/{{pascalCase name}}/index.ts',
+      template: 'export * from \'./{{pascalCase name}}\'\n'
+    },
+    {
+      type: 'add',
+      path: '../src/common/ui/{{componentType}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx',
+      templateFile: './templates/common/ui/test.tsx.hbs'
     },
     {
       path: '../src/common/ui/{{componentType}}/index.ts',

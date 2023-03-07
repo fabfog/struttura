@@ -16,7 +16,17 @@ module.exports = {
     {
       type: 'add',
       path: '../src/features/{{pascalCase name}}/connectors/index.ts',
-      templateFile: './templates/features/connectors/connectorsIndex.ts.hbs'
+      templateFile: './templates/features/connectors/index.ts.hbs'
+    },
+    {
+      type: 'add',
+      path: '../src/features/{{pascalCase name}}/connectors/components/index.ts',
+      templateFile: './templates/features/connectors/components/index.ts.hbs'
+    },
+    {
+      type: 'add',
+      path: '../src/features/{{pascalCase name}}/connectors/hooks/index.ts',
+      templateFile: './templates/features/connectors/hooks/index.ts.hbs'
     }
   ]
 }

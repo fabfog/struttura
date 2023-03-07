@@ -1,0 +1,8 @@
+import { render, screen } from '@testing-library/react'
+import { {{pascalCase name}} } from './{{pascalCase name}}'
+
+test('renders component', () => {
+  render(<{{pascalCase name}} />)
+  const title = screen.getByText(/Struttura/i)
+  expect(title).toBeInTheDocument()
+})
