@@ -10,6 +10,9 @@ module.exports = {
     'eslint:recommended'
   ],
   settings: {
+    react: {
+      version: 'detect'
+    },
     'import/resolver': {
       node: {
         extensions: ['.ts', '.tsx']
