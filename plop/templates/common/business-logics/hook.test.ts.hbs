@@ -1,0 +1,9 @@
+import { renderHook } from '@testing-library/react'
+import { use{{pascalCase name}} } from './{{camelCase name}}'
+
+test('should return null', () => {
+  const { result } = renderHook(() => use{{pascalCase name}}(0))
+
+  // fails intentionally
+  expect(result.current).toBe(null)
+})

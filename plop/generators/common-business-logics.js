@@ -16,8 +16,18 @@ module.exports = {
   actions: [
     {
       type: 'add',
-      path: '../src/common/business-logics/{{camelCase name}}/index.ts',
+      path: '../src/common/business-logics/{{camelCase name}}/{{camelCase name}}.ts',
       templateFile: './templates/common/business-logics/{{type}}.ts.hbs'
+    },
+    {
+      type: 'add',
+      path: '../src/common/business-logics/{{camelCase name}}/{{camelCase name}}.test.ts',
+      templateFile: './templates/common/business-logics/{{type}}.test.ts.hbs'
+    },
+    {
+      type: 'add',
+      path: '../src/common/business-logics/{{camelCase name}}/index.ts',
+      template: 'export * from \'./{{camelCase name}}\'\n'
     },
     {
       path: '../src/common/business-logics/index.ts',
