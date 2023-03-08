@@ -86,10 +86,7 @@ Note: I'm talking about features and not pages (as Atomic Design does), because 
     - to connect global state
     - to connect tranlations (i.e. withTranslations)
 
-7. only `sections` and `connectors` can be imported into the `index.tsx` file of a feature
-    Why? This is to avoid polluting the index file with lots of stateless components that require importing and initializing several hooks (and other stuff) to be correctly configured
-
-8. types should never be directly shared across `common/ui`, `common/stores` and `common/business-logics`
+7. types should never be directly shared across `common/ui`, `common/stores` and `common/business-logics`
    Why? Let's assume we have
     - a store (Redux), an api query (RTKQ), a business-logics function and a component using a common type, let's say "Order"
     - over time, the type grows with a lot of properties, this is due to the need of getting more data from the API in a single object (to avoid multiple calls). Different subsets of those properties could be used by different components.
