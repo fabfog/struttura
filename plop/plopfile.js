@@ -1,10 +1,10 @@
-const commonBusinessLogicsGenerator = require('./generators/common-business-logics')
-const commonHelperGenerator = require('./generators/common-helpers')
-const commonStoreGenerator = require('./generators/common-stores')
-const commonUIGenerator = require('./generators/common-ui')
-const featureGenerator = require('./generators/feature')
+import commonBusinessLogicsGenerator from './generators/common-business-logics.js'
+import commonHelperGenerator from './generators/common-helpers.js'
+import commonStoreGenerator from './generators/common-stores.js'
+import commonUIGenerator from './generators/common-ui.js'
+import featureGenerator from './generators/feature.js'
 
-module.exports = function (plop) {
+export default function (plop) {
   plop.setGenerator('common/business-logics', commonBusinessLogicsGenerator)
   plop.setGenerator('common/helpers', commonHelperGenerator)
   plop.setGenerator('common/stores', commonStoreGenerator)
