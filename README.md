@@ -53,7 +53,7 @@ Launch eslint / fixes problems
             - api: queries and mutations interacting with the BE, like RTQK (with Redux), Apollo (GraphQL), React-Query, etc.
             - global states like Redux, Zustand, etc.
 
-- `features`: not reusable parts of the project, they implement the actual pages of the app
+- `features`: non-reusable parts of the project, they implement the actual pages of the app
     - [Name]
         - `index.tsx`: entry point exporting the page/feature (as default)
         - `connectors`: a connector is a component or hook that combine reusable components, or hooks, or functions (or anything else) to build app-specific parts. Only components and hooks folders are generated, because that's what you'll need to connect reusable parts to specific features.
@@ -61,7 +61,7 @@ Launch eslint / fixes problems
             - `hooks`: here you won't separate by business logics, helpers, etc. as they could be combined together in some function handling some kind of event or action (i.e. onClick)
         - `features`: a folder of sub-features structured exactly like features, recursively
 
-*I'm talking about features and not pages, as we could have some nodes of the tree that are not mapped to any page in particular, for example an "Authenticated" feature that checks if the user is authenticated: if not, the user is redirected to an "Unauthenticated" feature. Both Authenticated and Unauthenticated will have a router with a "default" page, but they are not technically pages themselves. In short, I expect pages to be a subset of features.
+Note: I'm talking about features and not pages (as Atomic Design does), because we could have some nodes of the application tree that are not mapped to any page or visual representation in particular, for example an "Authenticated" feature that checks if the user is authenticated: if not, the user is redirected to an "Unauthenticated" feature. Both Authenticated and Unauthenticated will have a router with a "default" page, or wrap one, but they are not technically pages themselves. In short, I expect pages to be a subset of features.
 
 - `App.tsx`: the entry point of the whole application. Here you can add global providers (18n, theme, etc.)
 
@@ -87,12 +87,12 @@ Launch eslint / fixes problems
     - to connect tranlations (i.e. withTranslations)
 
 7. only `sections` and `connectors` can be imported into the `index.tsx` file of a feature
-    Why? This is to avoid polluting the index file with lots of stateless components that require several properties to be correctly configured
+    Why? This is to avoid polluting the index file with lots of stateless components that require importing and initializing several hooks (and other stuff) to be correctly configured
 
 8. types should never be directly shared across `common/ui`, `common/stores` and `common/business-logics`
    Why? Let's assume we have
     - a store (Redux), an api query (RTKQ), a business-logics function and a component using a common type, let's say "Order"
-    - over time, the type grows with a lot of properties, this is due to the need of getting more data from the API in a single object (to avoid multiple calls). Different subsets of properties could be used by different components.
+    - over time, the type grows with a lot of properties, this is due to the need of getting more data from the API in a single object (to avoid multiple calls). Different subsets of those properties could be used by different components.
     - the component will only handle a fraction of that data, but it still receives the whole object as a prop: this makes the UI component less testable, as it forces you to pass unnecessary data (violation of Interface Segregation principle)
-    To obtain a "DRY" result without having the above said problem, you can import the types you need (most commonly from stores to ui and business-logics) and `Pick` only the props you actually need. If you need to "pass back" some values, those values will be treated as the picked type, losing some of their actual props. To avoid this, use generics: `T extends Pick<TypeImportedFromStore, 'prop1' | ...>`
+    To obtain a "DRY" result without having the above said problem, you can import the types you need (most commonly from stores to ui and business-logics) and `Pick` only the props you actually need. If you need to "pass back" some values (i.e. in a callback) preserving the original type, use generics: `T extends Pick<TypeImportedFromStore, 'prop1' | ...>`
 
