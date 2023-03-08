@@ -1,0 +1,15 @@
+import { act, renderHook } from '@testing-library/react'
+import { use{{pascalCase name}}Store } from './{{camelCase name}}'
+
+test('should return null', () => {
+  const { result } = renderHook(() => use{{pascalCase name}}Store())
+
+  // fails intentionally
+  expect(result.current.counter).toBe(null)
+
+  act(() => {
+    result.current.increase(2)
+  })
+
+  expect(result.current.counter).toBe(null)
+})

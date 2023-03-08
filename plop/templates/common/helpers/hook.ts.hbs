@@ -1,9 +1,7 @@
-export interface Use{{pascalCase name}}Props {
-
-}
+export type Use{{pascalCase name}}Props = any
 
 export type Use{{pascalCase name}}Return = any
 
-export function use{{pascalCase name}} ({ }: Use{{pascalCase name}}Props): Use{{pascalCase name}}Return {
-  return null as any
+export function use{{pascalCase name}} (props: Use{{pascalCase name}}Props): Use{{pascalCase name}}Return {
+  return props
 }

@@ -16,8 +16,18 @@ module.exports = {
   actions: [
     {
       type: 'add',
-      path: '../src/common/helpers/{{camelCase name}}/index.ts',
+      path: '../src/common/helpers/{{camelCase name}}/{{camelCase name}}.ts',
       templateFile: './templates/common/helpers/{{type}}.ts.hbs'
+    },
+    {
+      type: 'add',
+      path: '../src/common/helpers/{{camelCase name}}/{{camelCase name}}.test.ts',
+      templateFile: './templates/common/helpers/{{type}}.test.ts.hbs'
+    },
+    {
+      type: 'add',
+      path: '../src/common/helpers/{{camelCase name}}/index.ts',
+      template: 'export * from \'./{{camelCase name}}\'\n'
     },
     {
       path: '../src/common/helpers/index.ts',
