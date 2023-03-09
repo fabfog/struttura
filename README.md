@@ -2,17 +2,17 @@
 
 ## Motivation
 
-React is a great tool once you get a grasp of its concepts, but it can be tricky if you approach it without a basic knowledge of architectural and design patters: what tends to happen is that you end up with a chaotic bunch of components, with no clear separation of concerns and responsibilities. Mixed UI, application logics and business logics, big files... or small files with no clear criteria on how they have been splitted: therefore no clue on how to keep working on them without breaking reusability. Been there, done that.
+React is a great tool once you get a grasp of its concepts, but it can be tricky if you approach it without a basic knowledge of architectural and design patters: what tends to happen is that you end up with a chaotic bunch of components, with no clear separation of concerns and responsibilities. Mixed UI, application logics and business logics, big files... or maybe small files, but with no clear criteria on how they have been splitted: so no clue on how to keep working on them, without breaking reusability. Been there, done that.
 
 This repo is an experiment aiming to build a basic architecture on top of React + TypeScript. I got "inspired" by Atomic Design and I tried to keep in mind SOLID principles, while defining the structure and the logics of every piece of code.
 
 In short, the architecture presented here aims to help developers in 3 fundamental moments:
 
-1. to know exactly what a component or hook or function should do, even before opening the file they're contained in. Or, which is basically the same, to know exactly where to put a component (or hook, etc.) before start working on it. Structure determines function, like in biology. This is achieved by proposing a structure based on the concept of separation of concerns, in brief Model (data structures and business logics), View (presentational components) and ViewModel ("connecting" Model and View entities).
+1. to know exactly what a component or hook or function should do, even before opening the file they're contained in. Or, which is basically the same, to know exactly where to put a component (or hook, etc.) before start working on it. *Structure determines function*, like in biology. This is achieved by proposing a structure based on the concept of separation of concerns, in brief Model (data structures and business logics), View (presentational components) and ViewModel ("connecting" Model and View entities).
 
 2. to know exactly what can be the dependencies of what I'm working on (be it a component, hook, etc.), even before opening a file. This is achieved by restricting imports (see the following "rules"), and this is enforced via Eslint rules. For instance: if you try to import some global state "thing" into a UI-only component, you will get an error! Of course this is meant to ensure reusability and modularity, and avoid mixing application logics with business logics, UI, etc.
 
-3. to speed up repetitive processes when creating a new component/hook/etc. thanks to generators. You don't pay for more files in your application, so it's not a good idea to write everything into a single 500 lines file when you can split it into 5 files of 100 lines, or so (even 100 lines can be a lot depending on context, but you got the idea 🤓).
+3. to speed up repetitive processes when creating a new component/hook/etc., thanks to generators. We don't pay for more files in our application, so it's not a good idea to write everything into a single 500 lines file when we can split it into 5 files of 100 lines, or so (you get the idea). Also, generators help keeping consistency in naming, at least for filenames, component/functions/hooks names, and types.
 
 ## Folder structure
 
@@ -40,9 +40,9 @@ In short, the architecture presented here aims to help developers in 3 fundament
             - `hooks`: here you won't separate by business logics, helpers, etc. as they could be combined together in some function handling some kind of event or action (i.e. onClick)
         - `features`: a folder of sub-features structured exactly like features, recursively
 
-Note: I'm talking about features and not pages (as Atomic Design does), because we could have some nodes of the application tree that are not mapped to any page or visual representation in particular, for example an "Authenticated" feature that checks if the user is authenticated: if not, the user is redirected to an "Unauthenticated" feature. Both Authenticated and Unauthenticated will have a router with a "default" page, or wrap one, but they are not technically pages themselves. In short, I expect pages to be a subset of features.
+Note: I'm talking about **features** and not *pages* (as in Atomic Design), because we may have some nodes of the application tree that are not mapped to any page, or visual representation in particular. For example, imagine an "Authenticated" feature that checks if the user is authenticated: if not, the user is redirected to an "Unauthenticated" feature. Both Authenticated and Unauthenticated may wrap some kind of routing to actual pages, but they are not technically pages themselves. In short, I expect pages to be a *subset* of features.
 
-- `App.tsx`: the entry point of the whole application. Here you can add global providers (18n, theme, etc.)
+- `App.tsx`: the entry point of the whole application. Here you can add global providers (18n, theme, etc.).
 
 ## Rules
 
@@ -71,7 +71,6 @@ Note: I'm talking about features and not pages (as Atomic Design does), because 
     - over time, the type grows with a lot of properties, this is due to the need of getting more data from the API in a single object (to avoid multiple calls). Different subsets of those properties could be used by different components.
     - the component will only handle a fraction of that data, but it still receives the whole object as a prop: this makes the UI component less testable, as it forces you to pass unnecessary data (violation of Interface Segregation principle)
     To obtain a "DRY" result without having the above said problem, you can import the types you need (most commonly from stores to ui and business-logics) and `Pick` only the props you actually need. If you need to "pass back" some values (i.e. in a callback) preserving the original type, use generics: `T extends Pick<TypeImportedFromStore, 'prop1' | ...>`
-
 
 ## Available Scripts
 
@@ -104,6 +103,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 Launches the interactive prompt for generating new ui components, stores, helpers etc.
 
-### `pnpm lint` and `pnpm lint:fix`
+### `pnpm lint` / `pnpm lint:fix`
 
-Launch eslint / fixes problems
+Respectively launches eslint / fixes problems

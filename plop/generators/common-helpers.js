@@ -34,12 +34,6 @@ export default {
       pattern: /(\/\/ PLOP-EXPORTS)/g,
       template: 'export * from \'./{{camelCase name}}\'\n$1',
       type: 'modify'
-    },
-    {
-      path: '../src/common/helpers/index.ts',
-      pattern: /export {}\n/g,
-      template: '',
-      type: 'modify'
     }
   ]
 }

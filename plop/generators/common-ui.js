@@ -34,12 +34,6 @@ export default {
       pattern: /(\/\/ PLOP-EXPORTS)/g,
       template: 'export * from \'./{{pascalCase name}}\'\n$1',
       type: 'modify'
-    },
-    {
-      path: '../src/common/ui/{{componentType}}/index.ts',
-      pattern: /export {}\n/g,
-      template: '',
-      type: 'modify'
     }
   ]
 }
