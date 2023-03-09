@@ -12,7 +12,7 @@ In short, the architecture presented here aims to help developers in 3 fundament
 
 2. to know exactly what can be the dependencies of what I'm working on (be it a component, hook, etc.), even before opening a file. This is achieved by restricting imports (see the following "rules"), and this is enforced via Eslint rules. For instance: if you try to import some global state "thing" into a UI-only component, you will get an error! Of course this is meant to ensure reusability and modularity, and avoid mixing application logics with business logics, UI, etc.
 
-3. to speed up repetitive processes when creating a new component/hook/etc., thanks to generators. We don't pay for more files in our application, so it's not a good idea to write everything into a single 500 lines file when we can split it into 5 files of 100 lines, or so (you get the idea). Also, generators help keeping consistency in naming, at least for filenames, component/functions/hooks names, and types.
+3. to speed up repetitive processes when creating a new component/hook/etc., thanks to generators. It reduces the "fatigue" of creating many files, connect them together via imports and exports, and help keeping consistency in naming (at least for filenames, component/functions/hooks names, and types). Every generated component/hook/function comes with a (failing) test, so one can start testing right away: this should eliminate the tendency to write all the code first, and then test the whole thing. TDD is the way!
 
 ## Folder structure
 
