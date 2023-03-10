@@ -38,7 +38,7 @@ In short, the architecture presented here aims to help developers in 3 fundament
         - `connectors`: a connector is a component or hook that combine reusable components, or hooks, or functions (or anything else) to build app-specific parts. Only components and hooks folders are generated, because that's what you'll need to connect reusable parts to specific features.
             - `components`: here you won't separate by atoms, molecules, etc. as we're not talking about reusable parts, instead you're going to combine components together (by responsibilities, of course)
             - `hooks`: here you won't separate by business logics, helpers, etc. as they could be combined together in some function handling some kind of event or action (i.e. onClick)
-        - `features`: a folder of sub-features structured exactly like features, recursively
+        - [SubFeature]: sub-features can be added as sub-directories
 
 Note: I'm talking about **features** and not *pages* (as in Atomic Design), because we may have some nodes of the application tree that are not mapped to any page, or visual representation in particular. For example, imagine an "Authenticated" feature that checks if the user is authenticated: if not, the user is redirected to an "Unauthenticated" feature. Both Authenticated and Unauthenticated may wrap some kind of routing to actual pages, but they are not technically pages themselves. In short, I expect pages to be a *subset* of features.
 
