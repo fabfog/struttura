@@ -108,10 +108,11 @@ module.exports = {
             from: './src/common/ui/templates',
           },
           // Organisms
-          {
-            target: './src/common/ui/organisms',
-            from: './src/common/ui/templates',
-          },
+          // uncomment next lines to restrict usage of templates in organisms
+          // {
+          //   target: './src/common/ui/organisms',
+          //   from: './src/common/ui/templates',
+          // },
           // Templates
           {
             target: './src/common/ui/templates',
