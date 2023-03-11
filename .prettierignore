@@ -1,0 +1,9 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore generators templates
+plop/**/*.hbs
+
+# Ignore README
+README.md

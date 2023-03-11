@@ -1,4 +1,4 @@
-function App () {
+function App() {
   return (
     <div style={{ paddingTop: '25vh', textAlign: 'center' }}>
       <code>
@@ -6,7 +6,7 @@ function App () {
         <p style={{ textTransform: 'uppercase', fontSize: 32 }}>struttura</p>
       </code>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,12 +1,12 @@
-import fs from 'fs'
-import { resolve } from 'path'
+import fs from 'fs';
+import { resolve } from 'path';
 
 const pathMultilineMessage = `What is the path to the parent feature?
   - it's optional (default folder is src/features)
   - it's case sensitive
   - must be a relative path (relative to src/features)
   - must not contain leading and trailing /
-`
+`;
 
 export default {
   description: 'Create a new feature',
@@ -14,26 +14,26 @@ export default {
     {
       type: 'input',
       name: 'path',
-      message: pathMultilineMessage
+      message: pathMultilineMessage,
     },
     {
       type: 'input',
       name: 'name',
-      message: "What is the new feature's name? (will be converted to PascalCase)"
-    }
+      message: "What is the new feature's name? (will be converted to PascalCase)",
+    },
   ],
   actions: ({ name, path }) => {
-    const absolutePath = resolve(`src/features/${path}`)
+    const absolutePath = resolve(`src/features/${path}`);
 
-    if (!name) throw new Error('name is mandatory')
-    if (!fs.existsSync(absolutePath)) throw new Error(`Incorrect path: ${absolutePath}`)
+    if (!name) throw new Error('name is mandatory');
+    if (!fs.existsSync(absolutePath)) throw new Error(`Incorrect path: ${absolutePath}`);
 
     return [
       {
         type: 'add',
         path: `${absolutePath}/{{pascalCase name}}/index.tsx`,
-        templateFile: './templates/features/index.tsx.hbs'
-      }
-    ]
-  }
-}
+        templateFile: './templates/features/index.tsx.hbs',
+      },
+    ];
+  },
+};

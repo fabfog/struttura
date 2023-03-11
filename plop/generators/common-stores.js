@@ -5,32 +5,32 @@ export default {
       type: 'list',
       name: 'type',
       message: 'How do you want to implement the new Store?',
-      choices: ['zustand'] // TODO: Redux...
+      choices: ['zustand'], // TODO: Redux...
     },
     {
       type: 'input',
       name: 'name',
-      message: "What is the new Store's name?"
-    }
+      message: "What is the new Store's name?",
+    },
   ],
   actions: ({ name }) => {
-    if (!name) throw new Error('name is mandatory')
+    if (!name) throw new Error('name is mandatory');
     return [
       {
         type: 'add',
         path: '../src/common/stores/{{camelCase name}}/index.ts',
-        template: 'export * from \'./{{camelCase name}}\'\n'
+        template: "export * from './{{camelCase name}}'\n",
       },
       {
         type: 'add',
         path: '../src/common/stores/{{camelCase name}}/{{camelCase name}}.ts',
-        templateFile: './templates/common/stores/{{type}}.ts.hbs'
+        templateFile: './templates/common/stores/{{type}}.ts.hbs',
       },
       {
         type: 'add',
         path: '../src/common/stores/{{camelCase name}}/{{camelCase name}}.test.ts',
-        templateFile: './templates/common/stores/{{type}}.test.ts.hbs'
-      }
-    ]
-  }
-}
+        templateFile: './templates/common/stores/{{type}}.test.ts.hbs',
+      },
+    ];
+  },
+};
