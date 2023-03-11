@@ -31,12 +31,6 @@ export default {
         type: 'add',
         path: '../src/common/ui/{{componentType}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx',
         templateFile: './templates/common/ui/test.tsx.hbs'
-      },
-      {
-        path: '../src/common/ui/{{componentType}}/index.ts',
-        pattern: /(\/\/ PLOP-EXPORTS)/g,
-        template: 'export * from \'./{{pascalCase name}}\'\n$1',
-        type: 'modify'
       }
     ]
   }

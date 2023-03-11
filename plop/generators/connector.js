@@ -32,7 +32,7 @@ export default {
   actions: ({ type, path, name }) => {
     if (!name) throw new Error('name is mandatory')
     if (!path) throw new Error('path is mandatory')
-    const absolutePath = resolve(path)
+    const absolutePath = resolve(`src/features/${path}`)
     if (!fs.existsSync(absolutePath)) throw new Error(`Incorrect path: ${absolutePath}`)
 
     const filenamePrefix = type === 'hooks'
@@ -45,12 +45,12 @@ export default {
     return [
       {
         type: 'add',
-        path: `../src/features/{{path}}/connectors/{{type}}/${filenamePrefix}{{pascalCase name}}.${extension}`,
+        path: `${absolutePath}/connectors/{{type}}/${filenamePrefix}{{pascalCase name}}.${extension}`,
         templateFile: `./templates/features/connectors/{{type}}/connector.${extension}.hbs`
       },
       {
         type: 'add',
-        path: `../src/features/{{path}}/connectors/{{type}}/${filenamePrefix}{{pascalCase name}}.test.${extension}`,
+        path: `${absolutePath}/connectors/{{type}}/${filenamePrefix}{{pascalCase name}}.test.${extension}`,
         templateFile: `./templates/features/connectors/{{type}}/connector.test.${extension}.hbs`
       }
     ]

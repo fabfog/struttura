@@ -10,7 +10,7 @@ export default {
     {
       type: 'input',
       name: 'name',
-      message: "What is the new Business Logic's name?"
+      message: "What is the new Business Logic's name? (avoid leading 'use' if it's a hook)"
     }
   ],
   actions: ({ type, name }) => {
@@ -35,12 +35,6 @@ export default {
         type: 'add',
         path: '../src/common/business-logics/{{camelCase name}}/index.ts',
         template: 'export * from \'./{{camelCase name}}\'\n'
-      },
-      {
-        path: '../src/common/business-logics/index.ts',
-        pattern: /(\/\/ PLOP-EXPORTS)/g,
-        template: `export * from './${filename}'\n$1`,
-        type: 'modify'
       }
     ]
   }

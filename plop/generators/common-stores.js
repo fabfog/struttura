@@ -30,12 +30,6 @@ export default {
         type: 'add',
         path: '../src/common/stores/{{camelCase name}}/{{camelCase name}}.test.ts',
         templateFile: './templates/common/stores/{{type}}.test.ts.hbs'
-      },
-      {
-        path: '../src/common/stores/index.ts',
-        pattern: /(\/\/ PLOP-EXPORTS)/g,
-        template: 'export * from \'./{{camelCase name}}\'\n$1',
-        type: 'modify'
       }
     ]
   }

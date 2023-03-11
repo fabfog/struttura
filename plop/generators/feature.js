@@ -23,16 +23,15 @@ export default {
     }
   ],
   actions: ({ name, path }) => {
+    const absolutePath = resolve(`src/features/${path}`)
+
     if (!name) throw new Error('name is mandatory')
-    if (path) {
-      const absolutePath = resolve(path)
-      if (!fs.existsSync(absolutePath)) throw new Error(`Incorrect path: ${absolutePath}`)
-    }
+    if (!fs.existsSync(absolutePath)) throw new Error(`Incorrect path: ${absolutePath}`)
 
     return [
       {
         type: 'add',
-        path: '../src/features/{{path}}/{{pascalCase name}}/index.tsx',
+        path: `${absolutePath}/{{pascalCase name}}/index.tsx`,
         templateFile: './templates/features/index.tsx.hbs'
       }
     ]
