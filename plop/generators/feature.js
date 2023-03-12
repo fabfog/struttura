@@ -23,6 +23,7 @@ export default {
     },
   ],
   actions: ({ name, path }) => {
+    if (!fs.existsSync(resolve('src/features'))) fs.mkdirSync('src/features');
     const absolutePath = resolve(`src/features/${path}`);
 
     if (!name) throw new Error('name is mandatory');

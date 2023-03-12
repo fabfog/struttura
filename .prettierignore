@@ -7,3 +7,6 @@ plop/**/*.hbs
 
 # Ignore README
 README.md
+
+# Ignore lockfile
+pnpm-lock.yaml
